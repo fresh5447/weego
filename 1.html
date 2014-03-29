@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>weego</title>
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="css/main.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="css/whhg.css">
+    <link href="Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+    <link href="Content/jquery.timepicker.css" rel="stylesheet" />
+    <link href="css/leaflet.css" rel="stylesheet" />
+    <link href="css/l.geosearch.css" rel="stylesheet" />
+    <link href="css/leaflet-openweathermap.css" rel="stylesheet" />
+    <link href="css/MarkerCluster.css" rel="stylesheet" />
+    <link href="css/MarkerCluster.Default.css" rel="stylesheet" />
+    <link href="Content/themes/base/jquery.ui.datepicker.css" rel="stylesheet" />
+    <link href="css/Control.OSMGeocoder.css" rel="stylesheet" />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]> <script src="../../assets/js/html5shiv.js"></script> <script src="../../assets/js/respond.min.js"></script> <![endif]-->
+    
+</head>
+<!--<body onload="initialize()">-->
+<body>
+        <!--autorization modal-->
+        <a href="#" class="btn btn-danger btn-sm btm-zindex none" id="Show_cont">Show content</a>
+        <div class="modal fade" id="autorization">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Autorization</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" />
+                                    Check me out
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Sign in</button>
+                        <button type="button" class="btn btn-primary btn-sm">Create account</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+        <!--map-->
+    <div id="map" class="map">
+        <!--<a data-toggle="modal" href="#createEventPopup" style="float: right;" class="btn btn-danger btn-lg">Create Event</a>-->
+        <input type="button" id="createEventBtn" style="float: right; position: relative; z-index: 9999;" class="btn btn-danger btn-lg" value="Create Event" />
+    </div>
+        
+        <!--/map-->
+        <div class="row site">
+            <div class="col-md-1 general_menu inner" id="glavmen">
+                <a href="#" class="avatar">
+                    <img src="img/no_ava.png" alt="..." />
+                </a>
+            </div>
+            <!--Profile-->
+            <span class="close_span" id=" open_span"><a href="#" class="close-profile-link clooses" id="link_open">+</a></span>
+            <div class="col-md-12 profile profile_closed" id="profile">
+                <!--User info-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="user">
+                            <!--<img src="img/ava1.png" alt="..." />-->
+                            <img src="img/avatar_6221.jpg" />
+                            <div>
+                                <h2>Mattew Weego</h2>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <a href="#" class="btn btn-dark btn-sm"><i class="icon-emailalt"></i><span>1</span></a><a href="#" class="btn btn-danger btn-sm">Sign out</a>
+                        </div>
+                    </div>
+                </div>
+                <!--/User info-->
+                <div class="row">
+                    <!--about-->
+                    <div class="col-md-7">
+                        <h2>Kred (80)</h2>
+                        <div class="row">
+                            <div class="col-xs-7">
+                                <img src="img/gauge.png" width="95%" />
+                            </div>
+                            <div class="col-xs-5">
+                                <h4>weego suggests</h4>
+                                <ul class="list-group" style="list-style: none;">
+                                    <li style="padding-left:10px">basketball</li>
+                                    <li style="padding-left:10px">rock climbing</li>
+                                    <li style="padding-left:10px">LARP</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/about-->
+                    <!--latest tweet-->
+                    <div class="col-md-5 tweets">
+                        <h2>Testimonials</h2>
+                        <span>have you tried creating an event? get out and play<i></i></span>
+                        <div class="tweet_link"><a href="#">@weegoplay</a>22.12.2013   23:33</div>
+                    </div>
+                    <!--/latest tweet-->
+                </div>
+                <!--my friends-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>My friends</h2>
+                        <div id="owl-demo" class="owl-carousel owl-theme">
+                            <!--friend-->
+                            <div class="item">
+                                <div class="friend">
+                                    <!--<img src="img/ava1.png" alt="..." />-->
+                                    <img src="img/avatar_11746.jpg" />
+                                    <a href="#">Ivan</a>
+                                    <i class="icon-map-marker"></i>Russia
+                                </div>
+                            </div>
+                            <!--/friend-->
+                            <!--friend-->
+                            <div class="item">
+                                <div class="friend">
+                                    <!--<img src="img/ava1.png" alt="..." />-->
+                                    <img src="img/avatar_19857.jpg" />
+                                    <a href="#">Betty</a>
+                                    <i class="icon-map-marker"></i>Montana
+                                </div>
+                            </div>
+                            <!--/friend-->
+                            <!--friend-->
+                            <!--<div class="item">
+                                <div class="friend">
+                                    <img src="img/ava1.png" alt="..." />
+                                    <a href="#">David mark</a>
+                                    <i class="icon-map-marker"></i>Russia
+                                </div>
+                            </div>
+                            <!--/friend-->
+                            <!--friend-->
+                            <!--<div class="item">
+                                <div class="friend">
+                                    <img src="img/ava1.png" alt="..." />
+                                    <a href="#">David mark</a>
+                                    <i class="icon-map-marker"></i>Russia
+                                </div>
+                            </div>-->
+                            <!--/friend-->
+                            <!--friend-->
+                            <!--<div class="item">
+                                <div class="friend">
+                                    <img src="img/ava1.png" alt="..." />
+                                    <a href="#">David mark</a>
+                                    <i class="icon-map-marker"></i>Russia
+                                </div>
+                            </div>-->
+                            <!--/friend-->
+                            <!--friend-->
+                            <!--<div class="item">
+                                <div class="friend">
+                                    <img src="img/ava1.png" alt="..." />
+                                    <a href="#">David mark</a>
+                                    <i class="icon-map-marker"></i>Russia
+                                </div>
+                            </div>-->
+                            <!--/friend-->
+                            <!--friend-->
+                            <!--<div class="item">
+                                <div class="friend">
+                                    <img src="img/ava1.png" alt="..." />
+                                    <a href="#">David mark</a>
+                                    <i class="icon-map-marker"></i>Russia
+                                </div>
+                            </div>-->
+                            <!--/friend-->
+                            <!--friend-->
+                            <!--<div class="item">
+                                <div class="friend">
+                                    <img src="img/ava1.png" alt="..." />
+                                    <a href="#">David mark</a>
+                                    <i class="icon-map-marker"></i>Russia
+                                </div>
+                            </div>-->
+                            <!--/friend-->
+                            <!--friend-->
+                            <!--<div class="item">
+                                <div class="friend">
+                                    <img src="img/ava1.png" alt="..." />
+                                    <a href="#">David mark</a>
+                                    <i class="icon-map-marker"></i>Russia
+                                </div>
+                            </div>-->
+                            <!--/friend-->
+                            <!--friend-->
+                            <!--<div class="item">
+                                <div class="friend">
+                                    <img src="img/ava1.png" alt="..." />
+                                    <a href="#">David mark</a>
+                                    <i class="icon-map-marker"></i>Russia
+                                </div>
+                            </div>-->
+                            <!--/friend-->
+                            <!--friend-->
+                            <!--<div class="item">
+                                <div class="friend">
+                                    <img src="img/ava1.png" alt="..." />
+                                    <a href="#">David mark</a>
+                                    <i class="icon-map-marker"></i>Russia
+                                </div>
+                            </div>-->
+                            <!--/friend-->
+                            <!--friend-->
+                            <!--<div class="item">
+                                <div class="friend">
+                                    <img src="img/ava1.png" alt="..." />
+                                    <a href="#">David mark</a>
+                                    <i class="icon-map-marker"></i>Russia
+                                </div>
+                            </div>-->
+                            <!--/friend-->
+                            <!--friend-->
+                            <!--<div class="item">
+                                <div class="friend">
+                                    <img src="img/ava1.png" alt="..." />
+                                    <a href="#">David mark</a>
+                                    <i class="icon-map-marker"></i>Russia
+                                </div>
+                            </div>-->
+                            <!--/friend-->
+                            <!--friend-->
+                            <!--<div class="item">
+                                <div class="friend">
+                                    <img src="img/ava1.png" alt="..." />
+                                    <a href="#">David mark</a>
+                                    <i class="icon-map-marker"></i>Russia
+                                </div>
+                            </div>-->
+                            <!--/friend-->
+                            <!--friend-->
+                            <!--<div class="item">
+                                <div class="friend">
+                                    <img src="img/ava1.png" alt="..." />
+                                    <a href="#">David mark</a>
+                                    <i class="icon-map-marker"></i>Russia
+                                </div>
+                            </div>-->
+                            <!--/friend-->
+                            <!--friend-->
+                            <!--<div class="item">
+                                <div class="friend">
+                                    <img src="img/ava1.png" alt="..." />
+                                    <a href="#">David mark</a>
+                                    <i class="icon-map-marker"></i>Russia
+                                </div>
+                            </div>-->
+                            <!--/friend-->
+                        </div>
+                    </div>
+                </div>
+                <!--/my friends-->
+            </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="Scripts/jquery-2.1.0.js"></script>
+        <script src="Scripts/jquery-ui-1.10.4.js"></script>
+        <script src="Scripts/underscore.js"></script>
+        <script src="Scripts/bootstrap.js"></script>
+        <script src="Scripts/backbone.js"></script>
+            <script src="Scripts/moment.js"></script>
+            <script src="Scripts/moment-with-langs.js"></script>
+        <script src="Scripts/bootstrap-datetimepicker.js"></script>
+            
+        <script src="Scripts/jquery.timepicker.js"></script>
+        <script src="Scripts/pxgradient-1.0.2.jquery.js"></script>
+        <script src="Scripts/owl.carousel.js"></script>
+        <script src="Scripts/leaflet.js"></script>
+        <script src="Scripts/leaflet-openweathermap.js"></script>
+        <script src="Scripts/leaflet-providers.js"></script>
+        <script src="Scripts/l.control.geosearch.js"></script>
+        <script src="Scripts/l.geosearch.provider.openstreetmap.js"></script>
+            <script src="Scripts/Control.OSMGeocoder.js"></script>
+        <script src="Scripts/leaflet.markercluster-src.js"></script>
+        <script src="https://rawgithub.com/jseppi/Leaflet.MakiMarkers/master/Leaflet.MakiMarkers.js"></script>
+        
+    
+        <!--<script type="text/javascript" src="js/Backbone/weeGo.js"></script>-->
+
+        <!--<script type="text/javascript">
+            $(document).ready(function () {
+                "use strict";
+
+            });
+        </script>
+        <script type="text/javascript">
+            $(function () {
+                "use strict";
+
+            });
+        </script>
+        <!--/Script for worked profile page-->
+        <!--Script for gradient icon in general menu-->
+        <!--<script type="text/javascript">
+            $(function () {
+                "use strict";
+
+            });
+        </script>-->
+
+        <!--<script type="text/javascript">
+            $("#createEventBtn").click(function () {
+                //var createEvent = new CreateEventView();
+                $('#createEventPopup').modal('show');
+            });
+        </script>-->
+
+    <script type="text/html" id="createEvent-view-template">
+        <form class="form-horizontal col-sm-9" id="createEventPopup">
+            <div class="modal-dialog">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="categoriesDropDown">Category</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="categoriesDropDown" name="categoriesDropDown">
+                                <option value="Basketball">Running</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="locationInput">Location</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="locationInput" id="locationInput" value="Kiwanis Park, Missoula MT">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="eventDateTime">Time</label>
+                        <!--<div class="col-sm-4">
+                            <input name="eventDateTime" id="eventDateTime" class="form-control" type="text">
+                        </div>-->
+                        
+                        <div class='col-sm-3 input-group date'>
+                            <input type="text" data-time-format="H:i:s" class="time ui-timepicker-input form-control" id="eventDateTime" name="eventDateTime" />
+                        </div>
+                    </div>
+
+                    <!-- <div class="form-group">
+                        <label class="col-sm-4 control-label" for="max">Max People</label>
+                        <div class="col-sm-2">
+                            <select name="maxPeople" id="maxPeople" class="form-control">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="min">Min People</label>
+                        <div class="col-sm-2">
+                            <select name="minPeople" id="minPeople" class="form-control">
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </select>
+                        </div>
+                    </div> -->
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="eventDescription">Description</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" name="eventDescription" id="eventDescription"></textarea>
+                        </div>
+                    </div>
+
+                    <!--<div class="form-group">
+                        <div class="col-sm-4" style="float: right;">
+                            <button class="btn">cancel</button>
+                            <button name="createEvent" class="btn">create</button>
+                        </div>
+                    </div>-->
+                </fieldset>
+            </div>
+        </form>
+    </script>
+
+    <div id="createEvent"></div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function () {
+        //$(".input-group.date").datepicker({ autoclose: true, todayHighlight: true });
+
+        $(".gradientmenu").pxgradient({
+            step: 10,
+            colors: ["#fdfeff", "#cfeefa"],
+            dir: "y"
+        });
+
+        $("#owl-demo, #myguest").owlCarousel({
+            items: 6,
+            itemsDesktop: [1000, 5],
+            itemsDesktopSmall: [900, 6],
+            itemsTablet: [600, 2],
+            itemsMobile: false
+        });
+
+        $('#link_open').on('click', function () {
+            if ($('#link_open').hasClass("clooses")) {
+                $("#open_span").removeClass("close_span").addClass("open_span");
+                $("#profile").removeClass("profile_closed");
+                $("#link_open").removeClass("clooses");
+                $("#cont").addClass("none");
+            }
+            else {
+                $("#open_span").addClass("close_span").removeClass("open_span");
+                $("#profile").addClass("profile_closed");
+                $("#link_open").addClass("clooses");
+                $("#cont").removeClass("none");
+            }
+        });
+        $('#map_open').on('click', function () {
+            "use strict";
+            $("#cont").addClass("none");
+            $("#Show_cont").removeClass("none");
+        });
+        $('#Show_cont').on('click', function () {
+            "use strict";
+            $("#cont").removeClass("none");
+        });
+
+        $("#createEventBtn").click(function () {
+            var createEvent = new CreateEventView();
+            //$('#createEventPopup').modal('show');
+        });
+
+        var CreateEventModel = Backbone.Model.extend({
+            defaults: function () {
+                return {
+                    Category: '',
+                    Location: "Nowhere",
+                    Time: '',
+                    MinNeeded: 0,
+                    MaxNeeded: 9999,
+                    Description: "No description"
+                };
+            },
+
+            getIcon: function () {
+                var icon;
+                if (this.get('Category') == 'Basketball') {
+                    icon = L.MakiMarkers.icon({ icon: "basketball", color: "#FF6103", size: "l" });
+                } else if (this.get('Category') == 'Rock Climbing') {
+                    icon = L.MakiMarkers.icon({ icon: "rocket", color: "#FF6103", size: "l" });
+                } else if (this.get('Category') == 'Floating') {
+                    icon = L.MakiMarkers.icon({ icon: "swimming", color: "#FF6103", size: "l" });
+                }
+
+                return icon;
+            },
+
+            getInfoWindow: function(){
+                var infoWindow =
+                    "<div class=\"container\">" +
+                        "<h2>weego " + this.get('Category').toString().toLowerCase() + "</h2>" +
+                        "<div class=\"row\">" +
+                        "<div class=\"col-xs-5\">" +
+                        "<h3>who goes?</h3>" +
+                        "</div>" +
+                        "<div class=\"col-xs-7\" style=\"padding-left:5px; border-left:1px solid #000\">" +
+                        "<table class=\"table table-condensed\">" +
+                        "<tr>" +
+                        "<td>location:</td><td>" + this.get('Location') + "</td>" +
+                        "</tr>" +
+                        "<tr>" +
+                        "<td>time:</td><td>" + this.get('Time').toString() + "</td>" +
+                        "</tr>" +
+                        "<tr>" +
+                        "<td>min needed:</td><td>" + this.get('MinNeeded') + "</td>" +
+                        "</tr>" +
+                        "<tr>" +
+                        "<td>max needed:</td><td>" + this.get('MaxNeeded') + "</td>" +
+                        "</tr>" +
+                        "<tr>" +
+                        "<td>description:</td><td>" + this.get('Description') + "</td>" +
+                        "</tr>" +
+                        "</table>" +
+                        "</div>" +
+                        "</div>" +
+                        "<div class=\"row\">" +
+                        "<div class=\"control-group\">" +
+                        "<button type=\"button\" class=\"btn btn-warning\">wee go</button>" +
+                        "<button id=\"igoBtn\" style=\"float: right;\" type=\"button\" class=\"btn btn-success\">i go</button>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>";
+                return infoWindow;
+            },
+
+            plotEvent: function () {
+                var lat;
+                var lon;
+                var info = this.getInfoWindow();
+                var icon = this.getIcon();
+                var url = "http://www.mapquestapi.com/geocoding/v1/address?&key=mjtd%7Clu6t2h07n1%2C2x%3Do5-lw7l9&itk&location=" + this.get('Location');
+                $.getJSON(url, function (data) {
+                    lat = data.results[0].locations[0].latLng.lat;
+                    lon = data.results[0].locations[0].latLng.lng;
+
+                    var eventMarker = L.marker([lat, lon], { icon: icon }).addTo(map);
+                    eventMarker.bindPopup(info);
+                    eventMarkers.addLayer(eventMarker);
+
+                });
+            }
+        });
+
+        var CreateEventView = Backbone.View.extend({
+            model: CreateEventModel,
+
+            el: $('#createEvent'),
+
+            initialize: function () {
+                _.bindAll(this, "render");
+                this.model = new CreateEventModel();
+                //var template = $('#createEvent-view-template').html();
+                this.template = _.template($('#createEvent-view-template').html());
+                //this.template = _.template(template);
+                this.render();
+            },
+
+            render: function () {
+                this.$el.append(this.template());
+                $('#eventDateTime').timepicker();
+                this.$el.dialog({
+                    autoOpen: true,
+                    height: 'auto',
+                    width: 'auto',
+                    modal: true,
+                    open: function (event, ui) {
+                        $(".ui-dialog-titlebar-close").hide();
+                    },
+                    draggable: false,
+                    resizable: false,
+                    title: 'Create Event',
+                    buttons: {
+                        "create": function () {
+                            var event = new CreateEventModel({
+                                Category: $('#categoriesDropDown').val(),
+                                Location: $('#locationInput').val(),
+                                Time: $('#eventDateTime').val(),
+                                MinNeeded: $('#minPeople').val(),
+                                MaxNeeded: $('#maxPeople').val(),
+                                Description: $('#eventDescription').val()
+                            });
+                            event.plotEvent();
+                            $(this).dialog("close");
+                        },
+                        "cancel": function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+                //this.el = $(".dialogForm");
+                this.delegateEvents(this.events)
+                return this;
+            }
+        });
+
+        var CreateEventButtonView = Backbone.View.extend({
+            el: $('#createEventBtn'),
+
+            events: {
+                'click': 'createEvent'
+            },
+
+            createEvent: function () {
+                var createEvent = new CreateEventView();
+            }
+        });
+
+        //Add a map to the page
+        var map = L.map('map', { zoomControl: false });
+
+
+        //Center the map to a location
+        map.setView([46.87, -113.99], 12);
+
+        //Load map tiles
+        var Esri_WorldStreetMap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+        });
+
+
+        var MapQuestOpen_Aerial = L.tileLayer('http://oatile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg', {
+            attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency',
+            subdomains: '1234'
+        });
+
+        new L.Control.Zoom({ position: 'bottomright' }).addTo(map);
+
+        //Add Esri_WorldStreetMap map tiles to the map as default
+        map.addLayer(Esri_WorldStreetMap);
+
+        //Create base layer tile options
+        var baseLayers = { "Streets": Esri_WorldStreetMap, "Aerial": MapQuestOpen_Aerial };
+
+        //Create the Layer control with referenced layers, and add to the map
+        L.control.layers(baseLayers, weatherMaps, { position: 'bottomright' }).addTo(map);
+
+        //Add geocoder pushout button
+        var osmGeocoder = new L.Control.OSMGeocoder({
+            collapsed: true,
+            position: 'bottomright',
+            text: 'Find!',
+        });
+        map.addControl(osmGeocoder);
+
+        
+
+        //Create a clustering group for event markers
+        var eventMarkers = L.markerClusterGroup({ spiderfyOnMaxZoom: true, showCoverageOnHover: false, zoomToBoundsOnClick: true });
+
+
+        //Make the map fit the bounds of the events
+        //map.fitBounds(markers.getBounds());  //center map on extent of layer
+    });
+</script>
